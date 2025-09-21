@@ -1,4 +1,4 @@
-// server/src/config/app.config.ts
+
 import { getEnv } from "../utils/get-env";
 
 const appConfig = () => ({
@@ -14,12 +14,11 @@ const appConfig = () => ({
 
   GOOGLE_CLIENT_ID: getEnv("GOOGLE_CLIENT_ID", ""),
   GOOGLE_CLIENT_SECRET: getEnv("GOOGLE_CLIENT_SECRET", ""),
-  GOOGLE_CALLBACK_URL: getEnv(
-    "GOOGLE_CALLBACK_URL", "http://localhost:5000/api/auth/google/callback"),
+  GOOGLE_CALLBACK_URL: getEnv(  "GOOGLE_CALLBACK_URL", "http://localhost:5173/api/auth/google/callback"),
 
 
-  FRONTEND_ORIGIN: getEnv("FRONTEND_ORIGIN", "http://localhost:3000"),
-  FRONTEND_GOOGLE_CALLBACK_URL: getEnv("FRONTEND_GOOGLE_CALLBACK_URL", "http://localhost:3000/google/callback"),
+  FRONTEND_ORIGIN: getEnv("FRONTEND_ORIGIN", "http://localhost:5173"),
+  FRONTEND_GOOGLE_CALLBACK_URL: getEnv("FRONTEND_GOOGLE_CALLBACK_URL", "http://localhost:5173/google/callback"),
   
 });
 

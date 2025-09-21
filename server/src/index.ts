@@ -4,6 +4,11 @@ import session from "cookie-session";
 import cors from "cors";
 import { config } from "./config/app.config";
 import connectDatabase from "./config/database.config";
+import { BadRequestException } from "./utils/appError";
+import { ErrorCodeEnum } from "./enums/error-code.enum";
+import { HTTPSTATUS } from "./config/http.config";
+import { asyncHandler } from "./middlewares/asyncHandler.middleware";
+import { errorHandler } from "./middlewares/errorHandler.middleware";
 
 
 
@@ -26,7 +31,6 @@ app.use(
 );
 
 
-
 app.use(
   cors({
     origin: config.FRONTEND_ORIGIN,
@@ -34,16 +38,20 @@ app.use(
   })
 );
 
-app.get(`/`, (req: Request, res: Response, next: NextFunction) => {
-    res.status(200).json({
-        message: "server is running",
+app.get(
+  `/`,
+  asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+    throw new BadRequestException(
+      "This is a bad request",
+      ErrorCodeEnum.AUTH_INVALID_TOKEN
+    );
+    return res.status(HTTPSTATUS.OK).json({
+      message: "server is running",
     });
-})
+  })
+);
 
-
-
-
-
+app.use(errorHandler)
 
 app.listen(config.PORT, async () => {
   console.log(`Server listening on port ${config.PORT} in ${config.NODE_ENV}`);
