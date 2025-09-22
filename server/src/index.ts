@@ -9,6 +9,9 @@ import { ErrorCodeEnum } from "./enums/error-code.enum";
 import { HTTPSTATUS } from "./config/http.config";
 import { asyncHandler } from "./middlewares/asyncHandler.middleware";
 import { errorHandler } from "./middlewares/errorHandler.middleware";
+import "./config/passport.config"
+import passport from "passport";
+import authRoutes from "./routes/auth.route";
 
 
 
@@ -30,6 +33,9 @@ app.use(
   })
 );
 
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.use(
   cors({
@@ -37,6 +43,8 @@ app.use(
     credentials: true,
   })
 );
+
+app.use(`${BASE_PATH}/auth`, authRoutes);
 
 app.get(
   `/`,

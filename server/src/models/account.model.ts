@@ -1,3 +1,4 @@
+
 import mongoose, { Document, Schema } from "mongoose";
 import { ProviderEnum, ProviderEnumType } from "../enums/account-provider.enum";
 
@@ -5,7 +6,7 @@ export interface AccountDocument extends Document {
   provider: ProviderEnumType;
   providerId: string; 
   userId: mongoose.Types.ObjectId;
-  refreshToken: string | null;
+  refreshToken?: string | null;
   tokenExpiry: Date | null;
   createdAt: Date;
 }
