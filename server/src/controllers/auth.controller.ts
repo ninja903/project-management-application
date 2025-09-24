@@ -81,7 +81,13 @@ export const logOutController = asyncHandler(
       }
     });
 
-    req.session = null;
+    if (req.session) {
+      req.session.destroy((err) => {
+        if (err) {
+          console.error("Session destroy error:", err);
+        }
+      });
+    }
     return res
       .status(HTTPSTATUS.OK)
       .json({ message: "Logged out successfully" });

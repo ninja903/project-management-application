@@ -138,7 +138,7 @@ export const registerUserService = async (body: {
       role: ownerRole._id,
       joinedAt: new Date(),
     });
-    await member.save({ session });
+   await member.save({ session });
 
     user.currentWorkspace = workspace._id as mongoose.Types.ObjectId;
     await user.save({ session });
