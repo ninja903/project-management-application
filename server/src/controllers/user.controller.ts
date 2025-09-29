@@ -8,6 +8,8 @@ export const getCurrentUserController = asyncHandler(
     const userId = req.user?._id;
 
     const { user } = await getCurrentUserService(userId);
+    console.log("req.user:", req.user);
+
 
     return res.status(HTTPSTATUS.OK).json({
       message: "User fetch successfully",
