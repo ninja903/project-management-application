@@ -44,7 +44,6 @@ clerk.json
 # Ignore MongoDB dump files and temp data
 dump/
 *.bson
-*.json
 *.csv
 mongod.lock
 journal/
